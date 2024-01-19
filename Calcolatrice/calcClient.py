@@ -11,13 +11,13 @@ while True:
     primoNumero = float(input("Inserisci il primo numero: "))
     operazione = input("Inserisci l'operazione(simbolo)")
     secondoNumero = float(input("Inserisci il secondo numero: "))
-    messaggio = {"primoNumero " : primoNumero,
-                "operazione" : operazione,
-                "secondoNumero" : secondoNumero}
-    messaggio = json.dunps (messaggio)
+    messaggio = {'primoNumero' : primoNumero,
+                'operazione' : operazione,
+                'secondoNumero' : secondoNumero}
+    messaggio = json.dumps (messaggio)
 
     s.sendto(messaggio.encode("UTF-8"), (SERVER_IP, SERVER_PORT))
 
     #Ricevo il risultato
     data = s.recv(1024)
-    print("Risultato: ", data.decode())
+    print("Risultato: ",  data.decode())
