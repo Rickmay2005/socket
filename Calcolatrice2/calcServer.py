@@ -17,13 +17,16 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock_server:
     while True:
         #Ricevo i dati
         sock_service, addr = sock_server.accept()
-        data = sock_service.recv(DIM_BUFFER).decode()
-        data = json.loads(data)
-        primoNumero = data['primoNumero']
-        operazione = data['operazione']
-        secondoNumero = data['secondoNumero']
+        
 
         while True:
+            data = sock_service.recv(DIM_BUFFER).decode()
+            if not data:
+                break
+            data = json.loads(data)
+            primoNumero = data['primoNumero']
+            operazione = data['operazione']
+            secondoNumero = data['secondoNumero']
             #calcolo il risultato e lo invio
             risultato = 0
             if operazione == "+":
