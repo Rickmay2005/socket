@@ -15,7 +15,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock_server:
     #Metti la socket in ascolto per le connessioni in ingresso
     sock_server.listen()
 
-print(f"Server in ascolto su {IP}:{PORTA}...")
+print(f"Server in ascolto su {IP}:{PORTA}")
 
 #Loop principale del server
 while True:

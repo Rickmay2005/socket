@@ -14,7 +14,7 @@ while True:
     data, addr = s.recvfrom(1024)
     if not data:
         break
-    data = data. decode()
+    data = data.decode()
     data = json.loads(data)
     primoNumero = data['primoNumero']
     operazione = data['operazione']
