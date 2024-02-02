@@ -8,21 +8,20 @@ def genera_richieste(address, port):
     start_time_thread = time.time()
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock_service:
         sock_service.connect((address, port))
-        while True:
-            v = ["+","-","/","*","%"]
-            primoNumero = random.randint(0,10)
-            operazione = random.randint(0,4)
-            secondoNumero = random.randint(0,10)
-            messaggio = {'primoNumero' : primoNumero,
-                        'operazione' : v[operazione],#estrae op. casuale
-                        'secondoNumero' : secondoNumero}
-            messaggio = json.dumps (messaggio)
-            sock_service.sendall(messaggio.encode("UTF-8"))
+        v = ["+","-","/","*"]
+        primoNumero = random.randint(0,10)
+        operazione = random.randint(0,3)
+        secondoNumero = random.randint(0,10)
+        messaggio = {'primoNumero' : primoNumero,
+                    'operazione' : v[operazione],#estrae op. casuale
+                    'secondoNumero' : secondoNumero}
+        messaggio = json.dumps (messaggio)
+        sock_service.sendall(messaggio.encode("UTF-8"))
 
-            #Ricevo il risultato
-            data = sock_service.recv(1024)
-            print("Risultato: ", data.decode())
-            print(f"{threading.current_thread().name} execution time=", time.time() - start_time_thread)
+        #Ricevo il risultato
+        data = sock_service.recv(1024)
+        print("Risultato: ", data.decode())
+        print(f"{threading.current_thread().name} execution time=", time.time() - start_time_thread)
 
 
 if __name__=='__main__':
